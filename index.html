@@ -1,0 +1,195 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Explore Destinations</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #a0e7e5, #fdfcdc);
+      color: #333;
+    }
+    header {
+      text-align: center;
+      background: #00b4d8;
+      color: white;
+      padding: 2rem;
+      font-size: 2rem;
+      letter-spacing: 1px;
+      border-bottom: 6px solid #0077b6;
+    }
+    .filters {
+      text-align: center;
+      margin: 1.5rem auto;
+    }
+    .filters button {
+      background: #0077b6;
+      color: white;
+      padding: 0.5rem 1rem;
+      border: none;
+      margin: 0.2rem;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .filters button:hover {
+      background: #023e8a;
+    }
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+      padding: 1rem;
+    }
+    .card {
+      background: white;
+      border-radius: 20px;
+      padding: 1.5rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      width: 320px;
+      transition: transform 0.3s;
+    }
+    .card:hover {
+      transform: scale(1.03);
+    }
+    .card h3 {
+      margin-top: 0;
+      font-size: 1.3rem;
+    }
+    .card ul {
+      padding-left: 20px;
+    }
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    World Destinations Explorer 🌍✈️
+  </header>  <div class="filters">
+    <button onclick="filterRegion('All')">All</button>
+    <button onclick="filterRegion('Asia')">Asia</button>
+    <button onclick="filterRegion('Europe')">Europe</button>
+    <button onclick="filterRegion('North-America')">North America</button>
+    <button onclick="filterRegion('South-America')">South America</button>
+    <button onclick="filterRegion('Africa')">Africa</button>
+    <button onclick="filterRegion('Oceania')">Oceania</button>
+    <button onclick="filterRegion('Islands')">Islands</button>
+    <button onclick="filterRegion('Oceans')">Oceans</button>
+  </div>  <div class="container" id="destinations"></div>  <script>
+    function filterRegion(region) {
+      const cards = document.querySelectorAll('.card');
+      cards.forEach(card => {
+        card.classList.toggle('hidden', region !== 'All' && !card.classList.contains(region.replace(/\s+/g, '-')));
+      });
+    }
+
+    const destinations = document.getElementById('destinations');
+    const data = {
+      "Asia": [
+        { country: "India 🇮🇳", places: ["Taj Mahal", "Jaipur", "Kerala", "Goa", "Himalayas"] },
+        { country: "China 🇨🇳", places: ["Great Wall", "Beijing", "Shanghai", "Terracotta Army"] },
+        { country: "Japan 🇯🇵", places: ["Tokyo", "Kyoto", "Mount Fuji", "Hiroshima"] },
+        { country: "Thailand 🇹🇭", places: ["Bangkok", "Phuket", "Chiang Mai"] },
+        { country: "Indonesia 🇮🇩", places: ["Bali", "Jakarta", "Yogyakarta"] },
+        { country: "Vietnam 🇻🇳", places: ["Hanoi", "Ha Long Bay", "Ho Chi Minh"] },
+        { country: "Malaysia 🇲🇾", places: ["Kuala Lumpur", "Langkawi"] },
+        { country: "Singapore 🇸🇬", places: ["Marina Bay", "Sentosa"] },
+        { country: "South Korea 🇰🇷", places: ["Seoul", "Busan"] },
+        { country: "UAE (Dubai) 🇦🇪", places: ["Burj Khalifa", "Palm Jumeirah"] },
+      ],
+      "Europe": [
+        { country: "France 🇫🇷", places: ["Eiffel Tower", "Paris", "Nice"] },
+        { country: "Italy 🇮🇹", places: ["Rome", "Venice", "Florence"] },
+        { country: "Germany 🇩🇪", places: ["Berlin", "Munich", "Neuschwanstein"] },
+        { country: "Spain 🇪🇸", places: ["Barcelona", "Madrid"] },
+        { country: "Switzerland 🇨🇭", places: ["Zurich", "Alps", "Interlaken"] },
+        { country: "UK 🇬🇧", places: ["London", "Scotland", "Wales"] },
+        { country: "Greece 🇬🇷", places: ["Athens", "Santorini"] },
+        { country: "Netherlands 🇳🇱", places: ["Amsterdam"] },
+        { country: "Austria 🇦🇹", places: ["Vienna", "Salzburg"] },
+        { country: "Greenland 🇬🇱", places: ["Nuuk", "Ice Fjords"] }
+      ],
+      "Africa": [
+        { country: "South Africa 🇿🇦", places: ["Cape Town", "Kruger Park"] },
+        { country: "Morocco 🇲🇦", places: ["Marrakech", "Casablanca"] },
+        { country: "Egypt 🇪🇬", places: ["Pyramids", "Cairo"] },
+        { country: "Kenya 🇰🇪", places: ["Nairobi", "Masai Mara"] },
+        { country: "Tanzania 🇹🇿", places: ["Serengeti", "Zanzibar"] },
+        { country: "Ethiopia 🇪🇹", places: ["Addis Ababa"] },
+        { country: "Nigeria 🇳🇬", places: ["Lagos", "Abuja"] },
+        { country: "Ghana 🇬🇭", places: ["Accra"] },
+        { country: "Namibia 🇳🇦", places: ["Sossusvlei"] },
+        { country: "Madagascar 🇲🇬", places: ["Antananarivo"] }
+      ],
+      "North-America": [
+        { country: "USA 🇺🇸", places: ["NYC", "Grand Canyon", "Las Vegas"] },
+        { country: "Canada 🇨🇦", places: ["Toronto", "Vancouver"] },
+        { country: "Mexico 🇲🇽", places: ["Cancun", "Mexico City"] },
+        { country: "Cuba 🇨🇺", places: ["Havana"] },
+        { country: "Dominican Republic 🇩🇴", places: ["Punta Cana"] },
+        { country: "Jamaica 🇯🇲", places: ["Montego Bay"] },
+        { country: "Bahamas 🇧🇸", places: ["Nassau"] },
+        { country: "Panama 🇵🇦", places: ["Panama Canal"] },
+        { country: "Costa Rica 🇨🇷", places: ["San José", "Rainforests"] },
+        { country: "Belize 🇧🇿", places: ["Barrier Reef"] }
+      ],
+      "South-America": [
+        { country: "Brazil 🇧🇷", places: ["Rio", "Amazon"] },
+        { country: "Argentina 🇦🇷", places: ["Buenos Aires", "Patagonia"] },
+        { country: "Peru 🇵🇪", places: ["Machu Picchu"] },
+        { country: "Chile 🇨🇱", places: ["Santiago", "Atacama"] },
+        { country: "Colombia 🇨🇴", places: ["Bogotá", "Cartagena"] },
+        { country: "Ecuador 🇪🇨", places: ["Quito", "Galápagos"] },
+        { country: "Uruguay 🇺🇾", places: ["Montevideo"] },
+        { country: "Paraguay 🇵🇾", places: ["Asunción"] },
+        { country: "Bolivia 🇧🇴", places: ["Salar de Uyuni"] },
+        { country: "Venezuela 🇻🇪", places: ["Angel Falls"] }
+      ],
+      "Oceania": [
+        { country: "Australia 🇦🇺", places: ["Sydney", "Great Barrier Reef"] },
+        { country: "New Zealand 🇳🇿", places: ["Queenstown", "Auckland"] },
+        { country: "Fiji 🇫🇯", places: ["Nadi", "Coral Coast"] },
+        { country: "Papua New Guinea 🇵🇬", places: ["Port Moresby"] },
+        { country: "Samoa 🇼🇸", places: ["Apia"] },
+        { country: "Tonga 🇹🇴", places: ["Nukuʻalofa"] },
+        { country: "Vanuatu 🇻🇺", places: ["Port Vila"] },
+        { country: "Solomon Islands 🇸🇧", places: ["Honiara"] },
+        { country: "Palau 🇵🇼", places: ["Koror"] },
+        { country: "Micronesia 🇫🇲", places: ["Pohnpei"] }
+      ],
+      "Islands": [
+        { country: "Maldives 🇲🇻", places: ["Male", "Resorts"] },
+        { country: "Seychelles 🇸🇨", places: ["Mahe", "Beau Vallon"] },
+        { country: "Mauritius 🇲🇺", places: ["Port Louis"] },
+        { country: "Sri Lanka 🇱🇰", places: ["Colombo", "Kandy"] },
+        { country: "Bora Bora 🇵🇫", places: ["Overwater Bungalows"] },
+        { country: "Hawaii 🇺🇸", places: ["Honolulu", "Maui"] },
+        { country: "Canary Islands 🇪🇸", places: ["Tenerife"] },
+        { country: "Bali 🇮🇩", places: ["Ubud", "Kuta"] },
+        { country: "Iceland 🇮🇸", places: ["Reykjavík", "Blue Lagoon"] },
+        { country: "Crete 🇬🇷", places: ["Heraklion"] }
+      ],
+      "Oceans": [
+        { country: "Pacific Ocean 🌊", places: ["Fiji", "Tahiti", "Hawaii"] },
+        { country: "Atlantic Ocean 🌊", places: ["Azores", "Bermuda"] },
+        { country: "Indian Ocean 🌊", places: ["Maldives", "Seychelles"] },
+        { country: "Southern Ocean 🌊", places: ["Antarctic Cruises"] },
+        { country: "Arctic Ocean 🌊", places: ["Greenland Coast", "Svalbard"] }
+      ]
+    };
+
+    for (const region in data) {
+      data[region].forEach(loc => {
+        const card = document.createElement('div');
+        card.className = `card ${region.replace(/\s+/g, '-')}`;
+        card.innerHTML = `<h3>${loc.country}</h3><ul>${loc.places.map(place => `<li>${place}</li>`).join('')}</ul>`;
+        destinations.appendChild(card);
+      });
+    }
+  </script></body>
+</html>
